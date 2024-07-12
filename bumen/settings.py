@@ -15,6 +15,8 @@ import os
 from pathlib import Path
 from dotenv import load_dotenv, dotenv_values
 
+from django.utils.translation import gettext as _
+
 load_dotenv()
 
 config = dotenv_values(".env")
@@ -62,6 +64,7 @@ INSTALLED_APPS = DJANGO_APPS + LOCAL_APPS + THIRT_PARTY_APPS
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
+    'django.middleware.locale.LocaleMiddleware', # new
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
@@ -129,12 +132,22 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = "en-us"
 
-TIME_ZONE = "UTC"
+TIME_ZONE = "Asia/Tashkent"
 
 USE_I18N = True
 
 USE_TZ = True
 
+
+LOCALE_PATHS = [
+    BASE_DIR / 'locale/',
+]
+
+LANGUAGES = (
+    ('en', _('English')),
+    ('uz', _('Uzbek')),
+    ('ru', _('Russian')),
+)
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
@@ -145,3 +158,11 @@ STATIC_URL = "static/"
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+
+MODELTRANSLATION_DEFAULT_LANGUAGE = 'en'
+MODELTRANSLATION_LANGUAGES = ('en', 'uz', 'ru')
+
+MODELTRANSLATION_TRANSLATION_FILES = (
+    'news.translation',
+)
