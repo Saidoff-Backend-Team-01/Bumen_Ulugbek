@@ -1,7 +1,7 @@
 from django.db import models
 from .validators import phone_number_validator, validate_instagram_url, validate_telegram_url
 from phonenumber_field.modelfields import PhoneNumberField
-
+from common.models import Media
 from django.utils.translation import gettext_lazy as _
 
 # Create your models here.
@@ -34,3 +34,26 @@ class ContactWithUs(models.Model):
     class Meta:
         verbose_name = _("Contact With Us")
         verbose_name_plural = _("Contact With Us")
+
+
+class AppInfo(models.Model):
+    title = models.CharField(max_length=255)
+    description = models.TextField()
+
+
+class FAQ(models.Model):
+    question = models.CharField(max_length=255)
+    answer = models.TextField()
+
+
+class PrivacyPolicy(models.Model):
+    text = models.TextField()
+
+class Sponsor(models.Model):
+    image = models.ForeignKey(Media, on_delete=models.SET_NULL, null=True)
+    url = models.CharField(max_length=255)
+
+class ContactUs(models.Model):
+    name = models.CharField(max_length=100)
+    phone_number = models.CharField(max_length=100, validators=[phone_number_validator])
+    message = models.TextField()

@@ -15,7 +15,7 @@ import os
 from pathlib import Path
 from dotenv import load_dotenv, dotenv_values
 
-from django.utils.translation import gettext as _
+from django.utils.translation import gettext_lazy as _
 
 load_dotenv()
 
@@ -99,14 +99,21 @@ WSGI_APPLICATION = "bumen.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME':config["POSTGRES_NAME"],
+#         'HOST':config["POSTGRES_HOST"],
+#         'USER':config["POSTGRES_USER"],
+#         'PORT':config["POSTGRES_PORT"],
+#         'PASSWORD':config["POSTGRES_PASSWORD"],
+#     }
+# }
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME':config["POSTGRES_NAME"],
-        'HOST':config["POSTGRES_HOST"],
-        'USER':config["POSTGRES_USER"],
-        'PORT':config["POSTGRES_PORT"],
-        'PASSWORD':config["POSTGRES_PASSWORD"],
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 
@@ -163,9 +170,4 @@ STATIC_URL = "static/"
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 
-MODELTRANSLATION_DEFAULT_LANGUAGE = 'en'
-MODELTRANSLATION_LANGUAGES = ('en', 'uz', 'ru')
 
-MODELTRANSLATION_TRANSLATION_FILES = (
-    'news.translation',
-)

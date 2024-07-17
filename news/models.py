@@ -19,3 +19,7 @@ class News(models.Model):
 
     def __str__(self):
         return self.title
+
+class NewsImage(models.Model):
+    file = models.ForeignKey(Media, on_delete=models.SET_NULL, null=True)
+    news = models.ForeignKey(News, on_delete=models.CASCADE)
