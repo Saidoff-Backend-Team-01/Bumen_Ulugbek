@@ -8,4 +8,4 @@ from common.serializers import MediaURlSerializer
 
 class MediaView(CreateAPIView):
     queryset = Media.objects.all()
-    serializer_class = MediaURlSerializer
+    serializer_class = MediaURlSerializer   

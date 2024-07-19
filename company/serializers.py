@@ -23,8 +23,8 @@ class ContactsSerializer(serializers.ModelSerializer):
 class FAQSerializer(serializers.ModelSerializer):
     class Meta:
         model = FAQ
-        # fields = ("question", "answer")
-        exlude = ("id",)
+        fields = ("question", "answer")
+        # exlude = ("id",)
 
 
 
@@ -40,7 +40,7 @@ class SocialMediaSerializer(serializers.ModelSerializer):
 class AppInfoSerializer(serializers.ModelSerializer):
     class Meta:
         model = AppInfo
-        fields = ('title', 'desc')
+        fields = ('title', 'description')
         
     def create(self, validated_data):
         return AppInfo.objects.create(**validated_data)

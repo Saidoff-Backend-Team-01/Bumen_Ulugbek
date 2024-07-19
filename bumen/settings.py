@@ -48,14 +48,15 @@ DJANGO_APPS = [
     'django.contrib.staticfiles',
 
     'rest_framework',
+    'jazzmin',
     'phonenumber_field',
+    'drf_yasg',
 ]
 
 LOCAL_APPS = [
         "news",
         "common",
         "company",
-        'core',
 ]
 
 THIRT_PARTY_APPS = [
@@ -80,7 +81,7 @@ ROOT_URLCONF = "bumen.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],
+        "DIRS": [BASE_DIR / "templates"],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [

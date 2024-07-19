@@ -9,7 +9,7 @@ class NewsListView(ListAPIView):
     serializer_class = NewsListSerializer
 
     def get_queryset(self):
-        return self.queryset.order_by("-created_at")
+        return self.queryset.order_by("-create_at")
     
 class NewsImageView(ListAPIView):
     queryset = NewsImage.objects.all()
