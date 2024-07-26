@@ -32,8 +32,8 @@ class ContactWithUs(models.Model):
     message = models.TextField()
 
     class Meta:
-        verbose_name = _("Contact With Us")
-        verbose_name_plural = _("Contact With Us")
+        verbose_name = _("Contact With Us WEB")
+        verbose_name_plural = _("Contact With Us WEB")
 
 
 class AppInfo(models.Model):
@@ -57,3 +57,24 @@ class ContactUs(models.Model):
     name = models.CharField(max_length=100)
     phone_number = models.CharField(max_length=100, validators=[phone_number_validator])
     message = models.TextField()
+    reason = models.ForeignKey('ContactWithUsReason', on_delete=models.SET_NULL)
+
+    class Meta:
+        verbose_name = _("Contact Us Mobile")
+        verbose_name_plural = _("Contact Us Mobile")
+
+
+class ContactWithUsCategory(models.Model):
+    name = models.CharField(max_length=100)
+
+    class Meta:
+        verbose_name = _("Contact With Us Category")
+        verbose_name_plural = _("Contact With Us Categories")
+
+class ContactWithUsReason(models.Model):
+    name = models.CharField(max_length=100)
+    category = models.ForeignKey(ContactWithUsCategory, on_delete=models.CASCADE)
+
+    class Meta:
+        verbose_name = _("Contact With Us Reason")
+        verbose_name_plural = _("Contact With Us Reasons")
